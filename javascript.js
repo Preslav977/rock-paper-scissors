@@ -1,31 +1,58 @@
-//rock paper scissors project
-// getComputerChoice function with random input rock, paper, scissors
-function getComputerChoice() {
-  return "Rock" || "Paper" || "Scissors";
+//RPS project
+//function getComputerChoice 
+//that outputs the computer random choices rock paper and scissor
+//using array as parameter to randomize the choices 
+
+function getComputerChoice(array) {
+
+  const randomIndex = Math.floor(Math.random() * array.length);
+
+  const item = array[randomIndex];
+
+  return item;
+
 }
 
+const array = ["Rock", "Paper", "Scissors"];
 
-//function with two parameters that is going to play the round of the game
+//function that plays round of RPS
+//with both player and computer
+
 function playRound(playerSelection, computerSelection) {
-//   //case insensitive so that user can input rock Rock roCk and etc
-//   //must return the function call for example "You Lose! Paper beats Rocks"
+  //thats the main logic of the project
+  //when player selects rock and computer selects paper
+  //player win and etc.
+  //checking with if's when player wins
+  //computer wins 
+  //when its a draw
 
-  playerSelection = prompt("Select a weapon of a choice");
-  //using prompt for user input
-  computerSelection = getComputerChoice();
-  //calls the function to get the computer choice
-  console.log(playRound(playerSelection, computerSelection));
-
-}
-
-//function game that calls playRound
-//inside that function has a loop that plays the game five times
-//this function will keep the score and it will declare a winner or loser
-function game() {
-  playRound();
-
-  for(let i = 0; i < 5; i++) {
-    //displaying the result of a each round
-    //and winner in the end
+  if (playerSelection === computerSelection) {
+    //starting when its a draw so when the player wins
+    //with else i can easily say computer wins
+    //draw conditions
+    return "It's a draw!";
+  } else if(playerSelection == "Paper" && computerSelection == "Rock") {
+    //when human wins conditions
+    return `Human Wins ${playerSelection} beats ${computerSelection}!`;
+  } else if(playerSelection == "Scissors" && computerSelection == "Paper") {
+    return `Human Wins ${playerSelection} beats ${computerSelection}!`;
+  } else if(playerSelection == "Rock" && computerSelection == "Scissors") {
+    return `Human Wins ${playerSelection} beats ${computerSelection}!`;
+  } else {
+    return `Machine Wins ${computerSelection} beats ${playerSelection}!`;
+    //when machine wins condition
   }
 }
+
+// let playerSelection = prompt("Choose the deadly weapon!");
+const computerSelection = getComputerChoice(array);
+// console.log(playRound(playerSelection, computerSelection));
+
+
+function game() {
+  for (let i = 0; i < 5; i++) {
+    playerSelection = prompt("Choose the deadly weapon!");
+    console.log(playRound(playerSelection, computerSelection));
+  }
+}
+  console.log(game(5));
