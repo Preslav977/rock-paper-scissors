@@ -15,6 +15,7 @@ function getComputerChoice(array) {
 
 const array = ["Rock", "Paper", "Scissors"];
 
+
 //function that plays round of RPS
 //with both player and computer
 
@@ -30,29 +31,98 @@ function playRound(playerSelection, computerSelection) {
     //starting when its a draw so when the player wins
     //with else i can easily say computer wins
     //draw conditions
-    return "It's a draw!";
-  } else if(playerSelection == "Paper" && computerSelection == "Rock") {
-    //when human wins conditions
-    return `Human Wins ${playerSelection} beats ${computerSelection}!`;
-  } else if(playerSelection == "Scissors" && computerSelection == "Paper") {
-    return `Human Wins ${playerSelection} beats ${computerSelection}!`;
   } else if(playerSelection == "Rock" && computerSelection == "Scissors") {
-    return `Human Wins ${playerSelection} beats ${computerSelection}!`;
+    //when human wins conditions
+    showChoice.textContent = `${playerSelection} beats ${computerSelection}!`;
+    humanScoring (5);
+  } else if(playerSelection == "Paper" && computerSelection == "Rock") {
+    showChoice.textContent = `${playerSelection} beats ${computerSelection}!`;
+    humanScoring (5);
+  } else if(playerSelection == "Scissors" && computerSelection == "Paper") {
+    showChoice.textContent = `${playerSelection} beats ${computerSelection}!`;
+    humanScoring (5);
   } else {
-    return `Machine Wins ${computerSelection} beats ${playerSelection}!`;
+    showChoice.textContent = `${computerSelection} beats ${playerSelection}!`;
     //when machine wins condition
+    machineScoring (5);
   }
-}
+    }
 
 // let playerSelection = prompt("Choose the deadly weapon!");
-const computerSelection = getComputerChoice(array);
 // console.log(playRound(playerSelection, computerSelection));
 
+function humanScoring () {
+  if (humanScore.textContent < 5) {
+    humanScore.textContent++;
+  } else {
+    winner.textContent = 'Human Won!';
+  }
+  }
 
-function game() {
-  for (let i = 0; i < 5; i++) {
-    playerSelection = prompt("Choose the deadly weapon!");
-    console.log(playRound(playerSelection, computerSelection));
+function machineScoring () {
+  if (machineScore.textContent < 5) {
+    machineScore.textContent++;
+  } else {
+    winner.textContent = 'Machine Won!';
   }
 }
-  console.log(game(5));
+
+function clear(showChoice) {
+  if (showChoice.length > 0) {
+    showChoice = "";
+  } else {
+    return showChoice;
+  }
+}
+
+const rock = document.getElementById('rock');
+
+
+rock.addEventListener('click', function() {
+  let computerSelection = getComputerChoice(array);
+  playRound(playerSelection = "Rock", computerSelection);
+  clear(showChoice);
+});
+
+const paper = document.getElementById('paper');
+
+  paper.addEventListener('click', function () {
+    let computerSelection = getComputerChoice(array);
+    playRound(playerSelection = "Paper", computerSelection);
+    clear(showChoice);
+});
+
+const scissors = document.getElementById('scissors');
+
+  scissors.addEventListener('click', function() {
+    let computerSelection = getComputerChoice(array);
+    playRound(playerSelection = "Scissors", computerSelection);
+    clear(showChoice);
+});
+
+
+const resetBtn = document.getElementById('reset');
+  resetBtn.addEventListener('click', function() {
+
+  });
+
+
+
+const showChoice = document.getElementById('showing-choice');
+
+let humanScore = document.getElementById('left');
+
+let machineScore = document.getElementById('right');
+
+const winner = document.getElementById('winner');
+
+const result = document.getElementById('result');
+
+
+
+
+
+
+
+
+
