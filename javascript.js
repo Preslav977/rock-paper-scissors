@@ -34,13 +34,10 @@ function playRound(playerSelection, computerSelection) {
   } else if(playerSelection == "Rock" && computerSelection == "Scissors") {
     //when human wins conditions
     showChoice.textContent = `${playerSelection} beats ${computerSelection}!`;
-    humanScoring (5);
   } else if(playerSelection == "Paper" && computerSelection == "Rock") {
     showChoice.textContent = `${playerSelection} beats ${computerSelection}!`;
-    humanScoring (5);
   } else if(playerSelection == "Scissors" && computerSelection == "Paper") {
     showChoice.textContent = `${playerSelection} beats ${computerSelection}!`;
-    humanScoring (5);
   } else {
     showChoice.textContent = `${computerSelection} beats ${playerSelection}!`;
     //when machine wins condition
@@ -75,12 +72,27 @@ function clear(showChoice) {
   }
 }
 
+function resetGameHumanScore(humanScore) {
+  if (humanScore.textContent > 0) {
+    humanScore.textContent = 0;
+    winner.textContent = "Choose Your Deadly Weapon!";
+}
+}
+
+function resetGameMachineScore(machineScore) {
+  if (machineScore.textContent > 0) {
+    machineScore.textContent = 0;
+    winner.textContent = "Choose Your Deadly Weapon!";
+}
+
+}
 const rock = document.getElementById('rock');
 
 
 rock.addEventListener('click', function() {
   let computerSelection = getComputerChoice(array);
   playRound(playerSelection = "Rock", computerSelection);
+  humanScoring (5);
   clear(showChoice);
 });
 
@@ -89,6 +101,7 @@ const paper = document.getElementById('paper');
   paper.addEventListener('click', function () {
     let computerSelection = getComputerChoice(array);
     playRound(playerSelection = "Paper", computerSelection);
+    humanScoring (5);
     clear(showChoice);
 });
 
@@ -97,22 +110,25 @@ const scissors = document.getElementById('scissors');
   scissors.addEventListener('click', function() {
     let computerSelection = getComputerChoice(array);
     playRound(playerSelection = "Scissors", computerSelection);
+    humanScoring (5);
     clear(showChoice);
 });
 
 
 const resetBtn = document.getElementById('reset');
-  resetBtn.addEventListener('click', function() {
 
+  resetBtn.addEventListener('click', function() {
+    resetGameHumanScore(humanScore);
+    resetGameMachineScore(machineScore);
   });
 
 
 
 const showChoice = document.getElementById('showing-choice');
 
-let humanScore = document.getElementById('left');
+const humanScore = document.getElementById('left');
 
-let machineScore = document.getElementById('right');
+const machineScore = document.getElementById('right');
 
 const winner = document.getElementById('winner');
 
